@@ -1,0 +1,116 @@
+[
+  {
+    "stage": "Blocked",
+    "class": "btn btn-primary",
+    "informations": {
+      "source": ["In Progress"],
+      "template": "<p class=\"m-0\">\n*#BLOCKED*\n</p>\n<p class=\"m-0\">\n(Colocar um breve comentário sobre o motivo do bloqueio)\n</p>",
+      "author": "DEVELOPER",
+      "flagged": false,
+      "changeAssigned": false,
+      "sendToStage": "Blocked",
+      "instructions": "Usar esta marcação em qualquer momento, para os casos onde a demanda está aguardando ou dependendo de algum recurso/tarefa (interno/externo)"
+    }
+  },
+  {
+    "stage": "Code Ready",
+    "class": "btn btn-secondary",
+    "informations": {
+      "source": ["In Progress"],
+      "author": "DEVELOPER",
+      "template": "<p class=\"m-0\">\n*{color:blue}#CODE_READY*{color}\n</p>\n<p class=\"m-0\">\n (Adicionar de forma breve uma explicação da alteração realizada e possíveis impactos/cenários de teste)\n</p>",
+      "flagged": false,
+      "changeAssigned": true,
+      "assigned": "UNASSIGNED",
+      "sendToStage": "To Do Code Review",
+      "instructions": "Usado ao término do processo de desenvolvimento da tarefa, afim de registrar \"O que?\" foi desenvolvido, \"Como?\" deverá ser testado, e \"Onde?\" ocorreram as alterações, afim de servir como base para o \"TESTER\" possa elaborar o roteiro de testes."
+    }
+  },
+  {
+    "stage": "Code Review Changed",
+    "class": "btn btn-dark",
+    "informations": {
+      "source": ["Code Review", "Review"],
+      "author": "REVIEWER",
+      "template": "<p class=\"m-0\">\n    *{color:orange}#CODE_REVIEW_CHANGED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer\n</p>\n<p class=\"m-0\">\n    [tester] (Evidenciar de forma breve que o code review foi finalizado)\n</p>",
+      "flagged": true,
+      "changeAssigned": true,
+      "assigned": "DEVELOPER",
+      "tagUser": [
+        "DEVELOPER",
+        "TESTER"
+      ],
+      "instructions": "Usado para informar sobre a necessidade de algum ajuste e/ou correção no código, aos envolvidos no processo.\nOBS.: Marcar o \"TESTER\" somente quando a tarefa estiver na coluna de \"Review\""
+    }
+  },
+  {
+    "stage": "Rework Changed",
+    "class": "btn btn-info",
+    "informations": {
+      "source": ["Code Review", "Review"],
+      "author": "DEVELOPER",
+      "template": "<p class=\"m-0\">\n    *{color:#f6c342}#REWORK_CHANGED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* reviewer    \n</p>\n<p class=\"m-0\">\n    [tester]\n    (Adicionar informações importantes sobre a correção)    \n</p>\n",
+      "flagged": true,
+      "changeAssigned": true,
+      "assigned": "UNASSIGNED",
+      "tagUser": [
+        "REVIEWER",
+        "TESTER"
+      ],
+      "instructions": "Usado para informar ao reviewer, que as alterações solicitadas na etapa de Code Review foram verificadas.\nOBS.: Marcar o \"TESTER\" somente quando a tarefa estiver na coluna de \"Review\""
+    }
+  },
+  {
+    "stage": "Code Review Approved",
+    "class": "btn btn-success",
+    "informations": {
+      "source": ["Code Review", "Review"],
+      "author": "REVIEWER",
+      "template": "<p class=\"m-0\">\n    *{color:#8eb021}#CODE_REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    [tester] (Adicionar informações necessário e confirmação de aprovação)    \n</p>\n",
+      "flagged": false,
+      "changeAssigned": true,
+      "assigned": "UNASSIGNED",
+      "tagUser": [
+        "DEVELOPER",
+        "TESTER"
+      ],
+      "sendToStage": "To Do Review",
+      "instructions": "Usado para informar ao desenvolvedor, que as alterações solicitadas na etapa de Code Review foram aprovadas.\nOBS.: Marcar o \"TESTER\" somente quando a tarefa estiver na coluna de \"Review\".\nEnviar a tarefa para \"To Do Review\" somente se o status atual dela for: \"Code Review\""
+    }
+  },
+  {
+    "stage": "Rework",
+    "class": "btn btn-danger",
+    "informations": {
+      "source": ["Review"],
+      "author": "TESTER",
+      "template": "<p class=\"m-0\">\n    *{color:red}#REWORK{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    reviewer (Evidências das inconsistências encontradas)\n</p>",
+      "flagged": true,
+      "changeAssigned": true,
+      "assigned": "DEVELOPER",
+      "tagUser": [
+        "DEVELOPER",
+        "REVIEWER"
+      ],
+      "instructions": "Utilizar quando houver a necessidade de assinalar alguma inconformidade no funcionamento da demanda."
+    }
+  },
+  {
+    "stage": "Review Approved",
+    "class": "btn btn-light",
+    "informations": {
+      "source": ["Review"],
+      "author": "TESTER",
+      "template": "<p class=\"m-0\">\n    *{color:#14892c}#REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    reviewer (Adicionar evidências do funcionamento da solução)\n</p>",
+      "flagged": false,
+      "changeAssigned": true,
+      "assigned": "UNASSIGNED",
+      "tagUser": [
+        "DEVELOPER",
+        "REVIEWER"
+      ],
+      "sendToStage": "Done",
+      "instructions": "Utilizado para informar as personas envolvidas no processo, que o trabalho foi concluido e devidamente evidenciado."
+    }
+  }
+]

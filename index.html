@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <style>
         .show {
             display: flex !important;
@@ -23,134 +25,136 @@
         .border-separator {
             border: 1px solid black;
         }
+
+        .bold {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1>Senior Sistemas Flow</h1>
-                <h2>Selecione a etapa desejada</h2>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>Senior Sistemas Flow</h1>
+            <h2>Selecione a etapa desejada</h2>
 
-                <div class="mt-4">
-                    <button class="btn btn-primary" onclick="showTemplate('CODE_REVIEW')">
-                        Code Review
-                    </button>
-                    <button class="btn btn-danger" onclick="showTemplate('CODE_REVIEW_DENIED')">
-                        Code Review Rejected
-                    </button>
-                    <button class="btn btn-success" onclick="showTemplate('CODE_REVIEW_ACCEPTED')">
-                        Code Review Accepted
-                    </button>
-                    <button class="btn btn-primary" onclick="showTemplate('REWORK')">
-                        Rework
-                    </button>
-                    <button class="btn btn-success" onclick="showTemplate('REVIEW_APPROVED')">
-                        Review Approved
-                    </button>
-                </div>
+            <div class="mt-4" id="button-container">
+            </div>
 
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-6">
-                            <div class="d-none" id="result">
-                                Template below:
-                                <p id="template" class="border-separator">
-                                </p>
-                                <div class="border-separator">
-                                    <span style="color: red">
-                                        Sugestão de mensagem abaixo:
-                                    </span>
-                                    <p id="message-suggestion">
-                                    </p>
-                                </div>
-                            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="d-none" id="result">
+                            <p id="template" class="border-separator">
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <script>
+<script>
+    $.getJSON("./data.json", (buttonsSettings) => {
+        const buttons = [];
 
-        const CODE_REVIEW_REQUEST_TEMPLATE = `
-            <p>
-                *#REVIEW*
-            </p>
-            <p>
-                Explain the change, where, how and impacts
-            </p>
-        `;
+        for (const buttonSetting of buttonsSettings) {
+            const button = `
+                    <button class="${buttonSetting.class}" onclick="showTemplate('${buttonSetting.stage}')">
+                        ${buttonSetting.stage}
+                    </button>
+                `;
+            buttons.push(button);
+        }
 
-        const CODE_REVIEW_COMPLETE_TEMPLATE = `
-            <p style="color: green">*{color:green}#CODE_REVIEW_COMPLETE{color}*<p>
-             <p>  *To:* develop_user <p>
-             <p>Code Review is Done!<p>
-        `;
+        const buttonContainer = document.getElementById('button-container');
+        buttonContainer.innerHTML = buttons.join('');
+    });
 
-        const CODE_REVIEW_DENIED_TEMPLATE = `
-            <p style="color: orange">
-                *{color:orange}#CODE_REVIEW_CHANGE{color}*
-            </p>
-            <p>
-                *To:* developer_user
-            </p>
-            <p>
-                Code Review Evidence here!
-            </p>
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        const innerText = document.getElementById(element).innerText;
+        $temp.val(innerText).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
 
-        `;
-
-        const REWORK_TEMPLATE = `
-            <p style="color: blue">
-                *{color:blue}#REWORK_CORRECTION{color}*
-            </p>
-            <p>
-                *To:* code_reviewer_user
-            </p>
-            <p>
-                Any other informations
-            </p>
-
-        `;
-
-        const REVIEW_APPROVED_TEMPLATE = `
-            <p style="color: green">
-                *{color:green}#REVIEW_RESULTS{color}*
-            </p>
-            <p>
-                Test evidence
-            </p>
-            <p>
-                APPROVED
-            </p>
-        `;
-
-        const TEMPLATE_BY_STATUS = new Map([
-            ['CODE_REVIEW', CODE_REVIEW_REQUEST_TEMPLATE],
-            ['CODE_REVIEW_DENIED', CODE_REVIEW_DENIED_TEMPLATE],
-            ['CODE_REVIEW_ACCEPTED', CODE_REVIEW_COMPLETE_TEMPLATE],
-            ['REWORK', REWORK_TEMPLATE],
-            ['REVIEW_APPROVED', REVIEW_APPROVED_TEMPLATE],
-        ]);
-
-        const MESSAGE_BY_STATUS = new Map([
-            ['CODE_REVIEW', 'Acabei de enviar uma nova tarefa para code review!'],
-            ['CODE_REVIEW_DENIED', 'A tarefa abaixo precisa mudar alguns itens'],
-            ['CODE_REVIEW_ACCEPTED', ''],
-            ['REWORK', 'Acabei de colocar algumas evidencias nessa tarefa'],
-        ]);
-
-        function showTemplate(status) {
+    function showTemplate(status) {
+        $.getJSON("./data.json", (buttonsSettings) => {
+            const buttonSetting = buttonsSettings.filter(settings => settings.stage === status)[0];
             const result = document.getElementById('result');
             const template = document.getElementById('template');
-            const messageSuggestion = document.getElementById('message-suggestion');
             result.className = 'show border mt-3';
-            template.innerHTML = TEMPLATE_BY_STATUS.get(status);
-            messageSuggestion.innerHTML = MESSAGE_BY_STATUS.get(status);
-        }
-    </script>
+            template.innerHTML = buildTemplate(buttonSetting);
+        });
+    }
+
+    function buildTemplate(stage) {
+            const informations = stage.informations;
+            return  `
+            <div>
+                <p class="mb-0 mt-2">
+                    <span class="bold">
+                    Status onde ação deve ocorre:
+                    </span>
+                     ${informations.source.join(',')}
+                </p>
+                <p class="m-0">
+                    <span class="bold">
+                        Autor:
+                    </span> ${informations.author}
+                </p>
+                <p class="m-0">
+                    <span class="bold">
+                        Mudar Responsável?:
+                    </span>
+                     ${informations.changeAssigned ? 'Sim' : 'Não'}
+                </p>
+                <p class="m-0">
+                    <span class="bold">
+                        Responsável:
+                    </span>
+                     ${informations.assigned}
+                </p>
+                <p class="m-0">
+                    <span class="bold">
+                        Enviar para:
+                    </span>
+                     ${!!informations.sendToStage ? informations.sendToStage : 'Não alterar estágio'}
+                </p>
+                <p class="m-0">
+                    <span class="bold">
+                        Pessoas que devo marcar:
+                    </span>
+                     ${!!informations.tagUser ? informations.tagUser?.join(',') : 'Não precisa marcar ninguém'}
+                </p>
+                <hr>
+                <div>
+                    <h5 class="bold">
+                        Template
+                    </h5>
+                    <p id="${stage.stage}">
+                        ${informations.template}
+                    </p>
+                    <button onclick="copyToClipboard('${stage.stage}')" class="btn btn-primary">
+                        Copiar
+                    </button>
+                    <hr>
+                    <h5 class="bold">
+                        Instruções
+                    </h5>
+                    <p class="p-3">
+                        ${informations.instructions}
+                    </p>
+                </div>
+            </div>
+        `
+    }
+
+</script>
+
 </body>
 </html>
