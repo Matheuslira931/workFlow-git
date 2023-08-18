@@ -4,7 +4,7 @@
     "class": "btn btn-primary",
     "informations": {
       "source": ["In Progress"],
-      "template": "<p class=\"m-0\">\n*#BLOCKED*\n</p>\n<p class=\"m-0\">\n(Colocar um breve comentário sobre o motivo do bloqueio)\n</p>",
+      "template": "<p class=\"m-0\">*#BLOCKED*\n</p>\n<p class=\"m-0\">(Colocar um breve comentário sobre o motivo do bloqueio)</p>",
       "author": "DEVELOPER",
       "flagged": false,
       "changeAssigned": false,
@@ -18,7 +18,7 @@
     "informations": {
       "source": ["In Progress"],
       "author": "DEVELOPER",
-      "template": "<p class=\"m-0\">\n*{color:blue}#CODE_READY*{color}\n</p>\n<p class=\"m-0\">\n (Adicionar de forma breve uma explicação da alteração realizada e possíveis impactos/cenários de teste)\n</p>",
+      "template": "<p class=\"m-0\">*{color:blue}#CODE_READY*{color}\n</p>\n<p class=\"m-0\"> (Adicionar de forma breve uma explicação da alteração realizada e possíveis impactos/cenários de teste)\n</p>",
       "flagged": false,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",
@@ -32,7 +32,7 @@
     "informations": {
       "source": ["Code Review", "Review"],
       "author": "REVIEWER",
-      "template": "<p class=\"m-0\">\n    *{color:orange}#CODE_REVIEW_CHANGED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer\n</p>\n<p class=\"m-0\">\n    [tester] (Evidenciar de forma breve que o code review foi finalizado)\n</p>",
+      "template": "<p class=\"m-0\">    *{color:orange}#CODE_REVIEW_CHANGED{color}*\n</p>\n<p class=\"m-0\">    *To:* @developer, @tester\n</p>\n<p class=\"m-0\">    (Evidenciar de forma breve que o code review foi finalizado)\n</p>",
       "flagged": true,
       "changeAssigned": true,
       "assigned": "DEVELOPER",
@@ -45,11 +45,11 @@
   },
   {
     "stage": "Rework Changed",
-    "class": "btn btn-info",
+    "class": "btn btn-warning",
     "informations": {
       "source": ["Code Review", "Review"],
       "author": "DEVELOPER",
-      "template": "<p class=\"m-0\">\n    *{color:#f6c342}#REWORK_CHANGED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* reviewer    \n</p>\n<p class=\"m-0\">\n    [tester]\n    (Adicionar informações importantes sobre a correção)    \n</p>\n",
+      "template": "<p class=\"m-0\">    *{color:#f6c342}#REWORK_CHANGED{color}*\n</p>\n<p class=\"m-0\">    *To:* @reviewer, @tester\n</p>\n<p class=\"m-0\">    (Adicionar informações importantes sobre a correção)\n</p>\n",
       "flagged": true,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",
@@ -66,7 +66,7 @@
     "informations": {
       "source": ["Code Review", "Review"],
       "author": "REVIEWER",
-      "template": "<p class=\"m-0\">\n    *{color:#8eb021}#CODE_REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    [tester] (Adicionar informações necessário e confirmação de aprovação)    \n</p>\n",
+      "template": "<p class=\"m-0\">    *{color:#8eb021}#CODE_REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">    *To:* @developer, @tester\n</p>\n<p class=\"m-0\">    (Adicionar informações necessário e confirmação de aprovação)\n</p>\n",
       "flagged": false,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",
@@ -84,7 +84,7 @@
     "informations": {
       "source": ["Review"],
       "author": "TESTER",
-      "template": "<p class=\"m-0\">\n    *{color:red}#REWORK{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    reviewer (Evidências das inconsistências encontradas)\n</p>",
+      "template": "<p class=\"m-0\">    *{color:red}#REWORK{color}*\n</p>\n<p class=\"m-0\">    *To:* @developer, @reviewer\n</p>\n<p class=\"m-0\">    (Evidências das inconsistências encontradas)\n</p>",
       "flagged": true,
       "changeAssigned": true,
       "assigned": "DEVELOPER",
@@ -97,11 +97,11 @@
   },
   {
     "stage": "Review Approved",
-    "class": "btn btn-light",
+    "class": "btn btn-info",
     "informations": {
       "source": ["Review"],
       "author": "TESTER",
-      "template": "<p class=\"m-0\">\n    *{color:#14892c}#REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">\n    *To:* developer    \n</p>\n<p class=\"m-0\">\n    reviewer (Adicionar evidências do funcionamento da solução)\n</p>",
+      "template": "<p class=\"m-0\">    *{color:#14892c}#REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">    *To:* @developer, @reviewer\n</p>\n<p class=\"m-0\">    (Adicionar evidências do funcionamento da solução)\n</p>",
       "flagged": false,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",

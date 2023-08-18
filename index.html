@@ -47,6 +47,9 @@
                         <div class="d-none" id="result">
                             <p id="template" class="border-separator">
                             </p>
+                            <p id="template-copy-phrase" class="d-none">
+                                Template Copiado!
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -74,16 +77,27 @@
     });
 
     function copyToClipboard(element) {
-        var $temp = $("<input>");
+        var $temp = $("<textarea>");
         $("body").append($temp);
-        const innerText = document.getElementById(element).innerText;
-        $temp.val(innerText).select();
+        const children = document.getElementById(element).children;
+        const lines = [];
+        for (let i = 0; i < children.length; i++) {
+            lines.push(children.item(i).innerHTML);
+        }
+
+        console.log('lines');
+        console.log(lines);
+        $temp.val(lines.join('')).select();
         document.execCommand("copy");
         $temp.remove();
+        const copiedPhrase = document.getElementById('template-copy-phrase');
+        copiedPhrase.className = 'd-flex justify-content-center text-success bold'
     }
 
     function showTemplate(status) {
         $.getJSON("./data.json", (buttonsSettings) => {
+            const copiedPhrase = document.getElementById('template-copy-phrase');
+            copiedPhrase.className = 'd-none'
             const buttonSetting = buttonsSettings.filter(settings => settings.stage === status)[0];
             const result = document.getElementById('result');
             const template = document.getElementById('template');
@@ -93,8 +107,8 @@
     }
 
     function buildTemplate(stage) {
-            const informations = stage.informations;
-            return  `
+        const informations = stage.informations;
+        return `
             <div>
                 <p class="mb-0 mt-2">
                     <span class="bold">
@@ -117,7 +131,7 @@
                     <span class="bold">
                         Responsável:
                     </span>
-                     ${informations.assigned}
+                     ${informations.assigned ? informations.assigned : 'Não alterar'}
                 </p>
                 <p class="m-0">
                     <span class="bold">
@@ -136,10 +150,10 @@
                     <h5 class="bold">
                         Template
                     </h5>
-                    <p id="${stage.stage}">
+                    <div id="${stage.stage}">
                         ${informations.template}
-                    </p>
-                    <button onclick="copyToClipboard('${stage.stage}')" class="btn btn-primary">
+                    </div>
+                    <button id="liveToastBtn" onclick="copyToClipboard('${stage.stage}')" class="btn btn-primary">
                         Copiar
                     </button>
                     <hr>
