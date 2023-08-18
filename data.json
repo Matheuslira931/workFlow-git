@@ -18,7 +18,7 @@
     "informations": {
       "source": ["In Progress"],
       "author": "DEVELOPER",
-      "template": "<p class=\"m-0\">*{color:blue}#CODE_READY*{color}\n</p>\n<p class=\"m-0\"> (Adicionar de forma breve uma explicação da alteração realizada e possíveis impactos/cenários de teste)\n</p>",
+      "template": "<p className=\"m-0\">{color:blue}*#CODE_READY*{color}\n</p>\n<p className=\"m-0\"> (Adicionar de forma breve uma explicação da alteração realizada e possíveis impactos/cenários de\n    teste)\n</p>",
       "flagged": false,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",
