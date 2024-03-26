@@ -1,5 +1,19 @@
 [
   {
+    "stage": "User story",
+    "class": "btn story",
+    "informations": {
+      "source": ["Backlog"],
+      "template": "<p class=\"m-0\">{panel:title=Regra de negócio (i)}\n</p>\n<p class=\"m-0\">{panel}\n</p>\n<p class=\"m-0\">{panel:title=User story (y)}\n</p>\n<p class=\"m-0\">*Como* []\n</p>\n<p class=\"m-0\">*Quero* []\n</p>\n<p class=\"m-0\">*Para* []\n</p>\n<p class=\"m-0\">{panel}\n</p>\n<p class=\"m-0\">{panel:title=Critério de aceite (/)}</p>\n<p class=\"m-0\">*Dado* []\n</p>\n<p class=\"m-0\">*Quando* []\n</p>\n<p class=\"m-0\">*Então* []\n</p>\n<p class=\"m-0\">{panel}\n</p>",
+      "author": "PRODUCT OWNER, SYSTEM ANALYST",
+      "flagged": false,
+      "changeAssigned": false,
+      "assigned": "UNASSIGNED",
+      "sendToStage": "__",
+      "instructions": "Usado para documentar as estórias de usuário que serão registradas no backlog, para posteriormente serem trabalhadas pelo time de desenvolvimento"
+    }
+  },
+  {
     "stage": "Blocked",
     "class": "btn btn-primary",
     "informations": {
@@ -10,6 +24,24 @@
       "changeAssigned": false,
       "sendToStage": "Blocked",
       "instructions": "Usar esta marcação em qualquer momento, para os casos onde a demanda está aguardando ou dependendo de algum recurso/tarefa (interno/externo)"
+    }
+  },
+  {
+    "stage": "Breach contract",
+    "class": "btn contract",
+    "informations": {
+      "source": ["In Progress"],
+      "template": "<p class=\"m-0\">  *{color:#654982}#BREACH_OF_CONTRACT{color}*\n</p>\n<p class=\"m-0\">    *To:* @tester1, @tester2\n</p>\n<p className=\"m-0\">\n*1°) Quais foram os projetos em que houveram quebra de contrato?*\n</p><p className=\"m-0\">- Descrever aqui os projetos\n</p><p className=\"m-0\">\n*2) Descrever quais foram os pontos de impacto:*\n</p><p className=\"m-0\">- Descrever aqui os pontos/rotinas afetadas",
+      "author": "DEVELOPER",
+      "flagged": false,
+      "changeAssigned": true,
+      "assigned": "UNASSIGNED",
+      "sendToStage": "To Do Code Review",
+      "tagUser": [
+        "TESTER",
+        "ANALYST"
+      ],
+      "instructions": "Utilizado para alertar sobre a necessidade quebrar o contrato de funcionamento de uma primitiva/componente. Com esta orientação, QA's poderam mitigar e avaliar os impactos gerados nos testes automatizados e demais rotinas do sistemas"
     }
   },
   {
@@ -101,16 +133,35 @@
     "informations": {
       "source": ["Review"],
       "author": "TESTER",
-      "template": "<p class=\"m-0\">    *{color:#14892c}#REVIEW_APPROVED{color}*\n</p>\n<p class=\"m-0\">    *To:* @developer, @reviewer\n</p>\n<p class=\"m-0\">    (Adicionar evidências do funcionamento da solução)\n</p>",
+      "template": "<p className=\"m-0\">*{color:#14892c}#REVIEW_APPROVED{color}*\n</p>\n<p className=\"m-0\">\n*To:* @developer, @reviewer\n</p>\n<p className=\"m-0\">\n*1) Todos os critérios de aceite foram devidamente atendidos?*\n</p>\n<p className=\"m-0\">() Sim () Não\n</p>\n<p className=\"m-0\">\n*2) Todas as subtasks possíveis foram finalizadas?*\n</p>\n<p className=\"m-0\">() Sim () Não\n</p>\n<p className=\"m-0\">\n*3) Você realizou o teste na versão desktop?*\n</p>\n<p className=\"m-0\">() Sim () Não aplica\n</p>\n<p className=\"m-0\">(Adicionar aqui as evidencias do teste realizado)\n</p>\n<p className=\"m-0\">\n*3) Você realizou o teste na versão mobile?*\n</p>\n<p className=\"m-0\">() Sim () Não aplica\n</p>\n<p className=\"m-0\">(Adicionar aqui as evidencias do teste realizado)\n</p>\n<p className=\"m-0\">\n*4) As novas versões foram atualizadas em todos os arquivos pom.xml (BFF's, event-bridge, api-test)?*\n</p>\n<p className=\"m-0\">() Sim () Não\n</p>\n<p className=\"m-0\">\n*5) Todos os projetos alterados foram devidamente versionados?*\n</p>\n<p className=\"m-0\">() Sim () Não\n</p>\n<p className=\"m-0\">\n*6) Você registrou as horas trabalhadas na demanda corretamente?* \n</p>\n<p className=\"m-0\">() Sim () Não\n</p>\n<p className=\"m-0\">\n*7) Observações:*\n</p>\n<p className=\"m-0\">() Sim () Não</p>",
+      "flagged": false,
+      "changeAssigned": false,
+      "assigned": "TESTER",
+      "tagUser": [
+        "DEVELOPER",
+        "REVIEWER"
+      ],
+      "sendToStage": "Ready to Deploy",
+      "instructions": "Utilizado para informar as personas envolvidas no processo, que o trabalho foi concluido e devidamente evidenciado."
+    }
+  },
+  {
+    "stage": "Review Approved Homolog",
+    "class": "btn homolog",
+    "informations": {
+      "source": ["Review"],
+      "author": "TESTER",
+      "template": "<p className=\"m-0\">*{color:#205081}#REVIEW_APPROVED_HOMOLOG{color}*\n</p>\n<p className=\"m-0\">\n*To:* @developer, @reviewer, @product_owner\n</p>\n<p className=\"m-0\">\n*1) Todas os projetos foram devidamente deployados no ambiente?*\n</p>\n<p className=\"m-0\">\n() Sim () Não\n</p>\n<p className=\"m-0\">\n*2) Todas as chaves de tradução foram devidamente importadas no translation-hub?*\n</p>\n<p className=\"m-0\">\n() Sim () Não\n</p>\n<p className=\"m-0\">\n*3) Adicione as evidências do teste realizado abaixo:*\n</p>\n<p className=\"m-0\">\n(Adicionar aqui as evidências do teste)\n</p>\n<p className=\"m-0\">\n *4) Todos os testes automatizados foram devidamente executados após a liberação da demanda?*\n</p>\n<p className=\"m-0\">\n() Sim () Não \n</p>\n<p className=\"m-0\">\n*5) Foi criada a tarefa de deploy em produção para o SREHCM?*\n</p>\n<p className=\"m-0\">\n() Sim () Não\n</p>\n<p className=\"m-0\">\n*6) Você registrou as horas trabalhadas na demanda corretamente?* \n</p>\n<p className=\"m-0\">\n() Sim () Não\n</p>\n<p className=\"m-0\">\n APPROVED()\n</p>",
       "flagged": false,
       "changeAssigned": true,
       "assigned": "UNASSIGNED",
       "tagUser": [
         "DEVELOPER",
-        "REVIEWER"
+        "REVIEWER",
+        "PRODUCT_OWNER"
       ],
       "sendToStage": "Done",
-      "instructions": "Utilizado para informar as personas envolvidas no processo, que o trabalho foi concluido e devidamente evidenciado."
+      "instructions": "Utilizado para informar as personas envolvidas no processo, que a demanda se encontra devidamente liberada no ambiente de Homologação."
     }
   }
 ]

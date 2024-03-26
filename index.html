@@ -13,6 +13,26 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <style>
+        .gridButtons {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: 640px) {
+            .gridButtons {
+                display: grid;
+                gap: 16px;
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .gridButtons {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
         .show {
             display: flex !important;
             flex-direction: column;
@@ -29,6 +49,21 @@
         .bold {
             font-weight: bold;
         }
+
+        .story {
+            background-color: blueviolet;
+            color: white;
+        }
+
+        .contract {
+            background-color: #654982;
+            color: white;
+        }
+
+        .homolog {
+            background-color: #205081;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +73,7 @@
             <h1>Senior Sistemas Flow</h1>
             <h2>Selecione a etapa desejada</h2>
 
-            <div class="mt-4" id="button-container">
+            <div class="gridButtons" id="button-container">
             </div>
 
             <div class="container">
