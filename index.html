@@ -55,6 +55,15 @@
             color: white;
         }
 
+        .tamplete {
+            background-color: cadetblue;
+            color: white;
+        }
+
+        .kaizen {
+            background-color: darkkhaki;
+        }
+
         .contract {
             background-color: #654982;
             color: white;
@@ -73,8 +82,27 @@
             <h1>Senior Sistemas Flow</h1>
             <h2>Selecione a etapa desejada</h2>
 
-            <div class="gridButtons" id="button-container">
+            <!-- <div class="gridButtons" id="button-container">
+            </div> -->
+
+            <div style="display: flex; gap: 16px; flex-direction: column;">
+                <div style="text-align: left;">
+                    <h1>Analyst</h1>
+                    <div class="gridButtons" id="button-container">
+                    </div>
+                </div>
+                <div style="text-align: left;">
+                    <h1>Develop</h1>
+                    <div class="gridButtons" id="button-container-develop">
+                    </div>
+                </div>
+                <div style="text-align: left;">
+                    <h1>QA</h1>
+                    <div class="gridButtons" id="button-container-qa">
+                    </div>
+                </div>
             </div>
+
 
             <div class="container">
                 <div class="row justify-content-center">
@@ -95,21 +123,22 @@
 
 
 <script>
-    $.getJSON("./data.json", (buttonsSettings) => {
-        const buttons = [];
-
-        for (const buttonSetting of buttonsSettings) {
-            const button = `
-                    <button class="${buttonSetting.class}" onclick="showTemplate('${buttonSetting.stage}')">
-                        ${buttonSetting.stage}
-                    </button>
-                `;
-            buttons.push(button);
-        }
-
-        const buttonContainer = document.getElementById('button-container');
-        buttonContainer.innerHTML = buttons.join('');
-    });
+    function populateButtons(jsonFile, containerId) {
+        $.getJSON(jsonFile, (buttonsSettings) => {
+            const buttons = buttonsSettings.map(buttonSetting => `
+                <button class="${buttonSetting.class}" onclick="showTemplate('${buttonSetting.stage}')">
+                    ${buttonSetting.stage}
+                </button>
+            `);
+            
+            const buttonContainer = document.getElementById(containerId);
+            buttonContainer.innerHTML = buttons.join('');
+        });
+    }
+    
+    populateButtons("./data-all.json", 'button-container');
+    populateButtons("./data-develop.json", 'button-container-develop');
+    populateButtons("./data-qa.json", 'button-container-qa');
 
     function copyToClipboard(element) {
         var $temp = $("<textarea>");

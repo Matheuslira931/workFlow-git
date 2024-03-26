@@ -14,6 +14,34 @@
     }
   },
   {
+    "stage": "Template task",
+    "class": "btn tamplete",
+    "informations": {
+      "source": ["In Progress"],
+      "template": "<p class=\"m-0\">{color:red}*DESCRIÇÃO*{color}\n</p>\n<p class=\"m-0\">\n{color:red}*ARTEFATOS*{color}\n</p>\n<p class=\"m-0\">\n- Projeto: **\n</p>\n<p class=\"m-0\">\n{color:red}*CRITÉRIOS DE ACEITE*{color}\n</p>\n<p class=\"m-0\">\n{color:red}*ORIENTAÇÕES TÉCNICAS*{color}\n</p>\n<p class=\"m-0\">\n(i) Nenhuma\n</p>\n<p class=\"m-0\">\n{panel}\n</p>\n<p class=\"m-0\">*Criado por:* </p>\n<p class=\"m-0\">*Atualizado por:* \n</p>\n<p class=\"m-0\">*Data:* 00/00/000\n</p>\n<p class=\"m-0\">{panel}\n</p>",
+      "author": "DEVELOPER",
+      "flagged": false,
+      "changeAssigned": false,
+      "assigned": "UNASSIGNED",
+      "sendToStage": "__",
+      "instructions": "Usado para documentar as demandas que serão tratadas pelo time de desenvolvimento (Bugs, Subtasks)"
+    }
+  },
+  {
+    "stage": "Template Kaizen",
+    "class": "btn kaizen",
+    "informations": {
+      "source": ["Backlog"],
+      "template": "<p class=\"m-0\">{panel:title=Kaizen Name|borderStyle=dashed|borderColor=#ccc|titleBGColor=#48C9B0|bgColor=#CFD8DC}\n</p>\n<p class=\"m-0\">\n * *Ações:* \n</p>\n<p class=\"m-0\">\n ** \n</p>\n<p class=\"m-0\">\n* *Métrica:*\n</p>\n<p class=\"m-0\">\n ** \n</p>\n<p class=\"m-0\">\n(i) Nenhuma\n</p>\n<p class=\"m-0\">\n{panel}\n</p>",
+      "author": "DEVELOPER",
+      "flagged": false,
+      "changeAssigned": false,
+      "assigned": "UNASSIGNED",
+      "sendToStage": "__",
+      "instructions": "Usado para documentar demandas de melhorias internas do time"
+    }
+  },
+  {
     "stage": "Blocked",
     "class": "btn btn-primary",
     "informations": {
