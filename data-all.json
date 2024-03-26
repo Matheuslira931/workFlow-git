@@ -14,10 +14,10 @@
     }
   },
   {
-    "stage": "Template task",
+    "stage": "Bug Subtask spike",
     "class": "btn tamplete",
     "informations": {
-      "source": ["In Progress"],
+      "source": ["Backlog"],
       "template": "<p class=\"m-0\">{color:red}*DESCRIÇÃO*{color}\n</p>\n<p class=\"m-0\">\n{color:red}*ARTEFATOS*{color}\n</p>\n<p class=\"m-0\">\n- Projeto: **\n</p>\n<p class=\"m-0\">\n{color:red}*CRITÉRIOS DE ACEITE*{color}\n</p>\n<p class=\"m-0\">\n{color:red}*ORIENTAÇÕES TÉCNICAS*{color}\n</p>\n<p class=\"m-0\">\n(i) Nenhuma\n</p>\n<p class=\"m-0\">\n{panel}\n</p>\n<p class=\"m-0\">*Criado por:* </p>\n<p class=\"m-0\">*Atualizado por:* \n</p>\n<p class=\"m-0\">*Data:* 00/00/000\n</p>\n<p class=\"m-0\">{panel}\n</p>",
       "author": "DEVELOPER",
       "flagged": false,
@@ -28,7 +28,7 @@
     }
   },
   {
-    "stage": "Template Kaizen",
+    "stage": "Kaizen",
     "class": "btn kaizen",
     "informations": {
       "source": ["Backlog"],
